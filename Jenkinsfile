@@ -17,6 +17,9 @@ pipeline {
         }
 
         stage('Run Tests') {
+            agent{
+                docker { image 'python:3.9-slim' }
+            }
             steps {
                 echo 'Running unit tests...'
                 sh 'python -m unittest -v test_calculator.py'
