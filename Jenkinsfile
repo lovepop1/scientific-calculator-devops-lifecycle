@@ -12,7 +12,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Replace with your GitHub repository URL
-                git 'https://github.com/lovepop1/scientific-calculator-devops-lifecycle.git'
+                git branch: 'main', url: 'https://github.com/lovepop1/scientific-calculator-devops-lifecycle.git'
             }
         }
 
