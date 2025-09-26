@@ -1,0 +1,22 @@
+# deploy.yml
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Pull the latest calculator image from Docker Hub
+      community.docker.docker_image:
+        name: "kafkaflow/scientific-calculator-devops-lifecycle"
+        source: pull
+
+    - name: Stop and remove the old container if it exists
+      community.docker.docker_container:
+        name: "scientific-calculator-container"
+        state: absent
+
+    - name: Start the new calculator container
+      community.docker.docker_container:
+        name: "scientific-calculator-container"
+        image: "kafkaflow/scientific-calculator-devops-lifecycle"
+        state: started
+        interactive: yes
+        tty: yes
+        auto_remove: yes
