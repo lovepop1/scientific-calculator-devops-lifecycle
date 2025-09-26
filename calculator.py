@@ -1,50 +1,32 @@
+# calculator.py
 import math
 
-def square_root():
-    """Calculates the square root of a number."""
-    try:
-        num = float(input("Enter a number to find its square root: "))
-        if num < 0:
-            print("Error: Cannot calculate the square root of a negative number.")
-        else:
-            result = math.sqrt(num)
-            print(f"The square root of {num} is {result}")
-    except ValueError:
-        print("Invalid input. Please enter a valid number.")
+# --- Core Calculation Functions ---
 
-def factorial():
-    """Calculates the factorial of a number."""
-    try:
-        num = int(input("Enter a non-negative integer to find its factorial: "))
-        if num < 0:
-            print("Error: Factorial is not defined for negative numbers.")
-        else:
-            result = math.factorial(num)
-            print(f"The factorial of {num} is {result}")
-    except ValueError:
-        print("Invalid input. Please enter a valid integer.")
+def square_root(number):
+    """Calculates the square root of a non-negative number."""
+    if number < 0:
+        raise ValueError("Cannot calculate square root of a negative number.")
+    return math.sqrt(number)
 
-def natural_log():
-    """Calculates the natural logarithm (base e) of a number."""
-    try:
-        num = float(input("Enter a positive number to find its natural logarithm: "))
-        if num <= 0:
-            print("Error: Natural logarithm is only defined for positive numbers.")
-        else:
-            result = math.log(num)
-            print(f"The natural logarithm of {num} is {result}")
-    except ValueError:
-        print("Invalid input. Please enter a valid number.")
+def factorial(number):
+    """Calculates the factorial of a non-negative integer."""
+    if not isinstance(number, int) or number < 0:
+        raise ValueError("Factorial is only defined for non-negative integers.")
+    return math.factorial(number)
 
-def power_function():
-    """Calculates the power of a number (x^b)."""
-    try:
-        base = float(input("Enter the base number (x): "))
-        exponent = float(input("Enter the exponent (b): "))
-        result = math.pow(base, exponent)
-        print(f"{base} raised to the power of {exponent} is {result}")
-    except ValueError:
-        print("Invalid input. Please enter valid numbers for both base and exponent.")
+def natural_log(number):
+    """Calculates the natural logarithm of a positive number."""
+    if number <= 0:
+        raise ValueError("Natural logarithm is only defined for positive numbers.")
+    return math.log(number)
+
+def power(base, exponent):
+    """Calculates base raised to the power of exponent."""
+    return math.pow(base, exponent)
+
+
+# --- User Interface and Main Loop ---
 
 def main():
     """Main function to run the calculator menu."""
@@ -60,19 +42,29 @@ def main():
         
         choice = input("Please select an operation (1-5): ")
         
-        if choice == '1':
-            square_root()
-        elif choice == '2':
-            factorial()
-        elif choice == '3':
-            natural_log()
-        elif choice == '4':
-            power_function()
-        elif choice == '5':
-            print("Thank you for using the calculator. Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please select a valid option from the menu.")
+        try:
+            if choice == '1':
+                num = float(input("Enter a number: "))
+                print(f"Result: {square_root(num)}")
+            elif choice == '2':
+                num = int(input("Enter an integer: "))
+                print(f"Result: {factorial(num)}")
+            elif choice == '3':
+                num = float(input("Enter a number: "))
+                print(f"Result: {natural_log(num)}")
+            elif choice == '4':
+                base = float(input("Enter the base: "))
+                exponent = float(input("Enter the exponent: "))
+                print(f"Result: {power(base, exponent)}")
+            elif choice == '5':
+                print("Thank you for using the calculator. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please select a valid option.")
+        except ValueError as e:
+            print(f"Error: {e}")
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     main()
