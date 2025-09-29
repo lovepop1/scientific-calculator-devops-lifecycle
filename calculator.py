@@ -57,7 +57,7 @@ def main():
                 exponent = float(input("Enter the exponent: "))
                 print(f"Result: {power(base, exponent)}")
             elif choice == '5':
-                print("Thank you for using the calculator. Goodbye!")
+                print("Thank you for using the calculator. Goodbyeeeee!")
                 break
             else:
                 print("Invalid choice. Please select a valid option.")
