@@ -42,13 +42,13 @@ pipeline {
                 }
             }
         }
-        // Add this stage at the end of your Jenkinsfile
         stage('Deploy with Ansible') {
             steps {
                 echo 'Deploying the new container...'
                 withCredentials([string(credentialsId: 'vm-sudo-password', variable: 'SUDO_PASS')]) {
-                    // The -S flag tells ansible-playbook to read the password from standard input
-                    sh "echo $SUDO_PASS | ansible-playbook -i inventory deploy.yml --ask-become-pass -S"
+                    // Set the password as an environment variable for the ansible-playbook command
+                    // This is the standard, secure way to provide a sudo password non-interactively.
+                    sh 'ANSIBLE_BECOME_PASS=$SUDO_PASS ansible-playbook -i inventory deploy.yml'
                 }
             }
         }
