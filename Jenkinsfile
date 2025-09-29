@@ -45,11 +45,8 @@ pipeline {
         stage('Deploy with Ansible') {
             steps {
                 echo 'Deploying the new container...'
-                withCredentials([string(credentialsId: 'vm-sudo-password', variable: 'SUDO_PASS')]) {
-                    // Set the password as an environment variable for the ansible-playbook command
-                    // This is the standard, secure way to provide a sudo password non-interactively.
-                    sh 'ANSIBLE_BECOME_PASS=$SUDO_PASS ansible-playbook -i inventory deploy.yml'
-                }
+                // We no longer need withCredentials or the password variable
+                sh 'ansible-playbook -i inventory deploy.yml'
             }
         }
     }
