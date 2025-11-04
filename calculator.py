@@ -30,7 +30,7 @@ def power(base, exponent):
 
 def main():
     """Main function to run the calculator menu."""
-    print("Welcome to the Scientific Calculator!")
+    print("Welcome to the Viva of Scientific Calculator!")
     
     while True:
         print("\n--- Menu ---")
