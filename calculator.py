@@ -40,7 +40,7 @@ def main():
         print("4. Power Function (x^b)")
         print("5. Exit")
         
-        choice = input("Please select an operation (1-5): ")
+        choice = input("Please choose an operation (1-5): ")
         
         try:
             if choice == '1':
