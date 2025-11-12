@@ -33,7 +33,7 @@ def main():
     print("Welcome to the Viva of Scientific Calculator!")
     
     while True:
-        print("\n---- Menu for Demo 1 ----")
+        print("\n---- Menu for Actual Viva ----")
         print("1. Square Root (√x)")
         print("2. Factorial (!x)")
         print("3. Natural Logarithm (ln(x))")
